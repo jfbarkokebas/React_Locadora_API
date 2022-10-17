@@ -1,0 +1,8 @@
+.error{
+    padding: 2rem;
+}
+
+.error a{
+    
+    cursor: pointer;
+}
