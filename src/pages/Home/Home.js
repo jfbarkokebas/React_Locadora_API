@@ -22,7 +22,7 @@ const Home = () => {
             })
 
             console.log(response);
-            setFilmes(response.data.results.slice(0,10))
+            setFilmes(response.data.results)
             setIsLoading(false)
             
         }

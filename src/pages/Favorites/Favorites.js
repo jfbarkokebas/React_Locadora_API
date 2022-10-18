@@ -2,6 +2,7 @@ import './Favorites.css'
 
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const Favorites = () => {
 
@@ -14,17 +15,28 @@ const Favorites = () => {
 
     }, [])
 
+    function removeFavorite(id) {
+        const filt = movie => movie.id !== id
+        const newMoviesList = movies.filter(filt)
+        localStorage.setItem("@primeflix", JSON.stringify(newMoviesList))
+        setMovies(newMoviesList)
+        toast.success("Filme removido com sucesso!")
+    }
+
 
     return (
         <div className='my-movies'>
             <h1>Meus Filmes</h1>
+
+        {movies.length === 0 && <span>Você não possui filmes salvos :(</span>}
+
             <ul>
                 {movies.map(item => (
                     <li key={item.id}>
                         <span>{item.title}</span>
                         <div>
                             <Link to={`/movie/${item.id}`}>Ver detahes</Link>
-                            <button>Excluir</button>
+                            <button onClick={() => removeFavorite(item.id)}>Excluir</button>
                         </div>
                     </li>
                 ))}
