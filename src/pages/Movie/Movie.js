@@ -52,6 +52,32 @@ const Movie = () => {
     )
   }
 
+  const saveMovie = ()=>{
+    
+    const myList = localStorage.getItem('@primeflix')
+
+    let moviesSaved = JSON.parse(myList) || [] //a variavel inicia com a lista (objeto) se tiver, caso não, como um array vazio
+
+    const hasMovie = moviesSaved.some(moviesSaved =>moviesSaved.id === movie.id)
+
+    if(hasMovie){
+      alert('Esse filme já está na lista!')
+      return
+    }
+
+    moviesSaved.push(movie)
+    localStorage.setItem("@primeflix", JSON.stringify(moviesSaved))
+    alert('Filme salvo com sucesso!')
+
+
+
+
+
+
+
+
+  }
+
   return (
     <div className="movie-info">
       <h1>{movie.title}</h1>
@@ -61,7 +87,7 @@ const Movie = () => {
       <span>{movie.overview}</span>
       <strong>Avaliação: {movie.vote_average} / 10</strong>
       <div className="area-buttons">
-        <button>Salvar</button>
+        <button onClick={saveMovie}>Salvar</button>
         <button>
           <a target='blank' rel='external' href={`https://youtube.com/results?search_query=${movie.title} Trailer`}>
             Trailer

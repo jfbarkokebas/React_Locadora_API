@@ -47,7 +47,7 @@ const Home = () => {
                     <article key={f.id}>
                         <strong>{f.title}</strong>
                         <img src={`https://image.tmdb.org/t/p/original/${f.backdrop_path}`} alt="imagem do poster do filme" />
-                        <Link to={`/film/${f.id}`}>Acessar</Link>
+                        <Link to={`/movie/${f.id}`}>Acessar</Link>
                     </article>
                 ))}
             </div>
